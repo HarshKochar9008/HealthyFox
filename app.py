@@ -9,14 +9,13 @@ import pydicom
 import tempfile
 import os
 
-# Set page config
 st.set_page_config(
     page_title="HealthyFox",
     page_icon="🏥",
     layout="wide"
 )
 
-# Custom CSS for dark theme and vibrant accents
+
 st.markdown("""
     <style>
     body, .main, .stApp {
@@ -89,12 +88,9 @@ def process_image(image):
 
 def detect_anomalies(image):
     """Detect anomalies in the medical image"""
-    # This is a placeholder for actual anomaly detection
-    # In a real application, you would use a trained model here
     anomalies = []
     height, width = image.shape[:2]
     
-    # Simulate some random anomalies
     num_anomalies = np.random.randint(1, 4)
     for _ in range(num_anomalies):
         x = np.random.randint(0, width)
@@ -120,7 +116,6 @@ def generate_heatmap(image, anomalies):
 
 def analyze_medical_image(anomaly):
     """Analyze a detected anomaly and provide medical insights"""
-    # This is a placeholder for actual medical analysis
     conditions = [
         "Possible mass lesion",
         "Suspicious calcification",
@@ -146,32 +141,24 @@ def main():
         st.markdown('</div>', unsafe_allow_html=True)
 
         if uploaded_file is not None:
-            # Process the uploaded file
             if uploaded_file.name.endswith('.dcm'):
-                # Handle DICOM file
                 with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
                     tmp_file.write(uploaded_file.getvalue())
                     ds = pydicom.dcmread(tmp_file.name)
                     image = ds.pixel_array
                     os.unlink(tmp_file.name)
             else:
-                # Handle regular image file
                 image = Image.open(uploaded_file)
                 image = process_image(image)
 
-            # Display the original image
             st.image(image, caption="Original Image", use_column_width=True)
 
-            # Analysis button
             if st.button("Analyze Image"):
                 with st.spinner("Analyzing image..."):
-                    # Detect anomalies
                     anomalies = detect_anomalies(image)
                     
-                    # Generate heatmap
                     heatmap = generate_heatmap(image, anomalies)
                     
-                    # Display heatmap
                     fig = go.Figure(data=go.Heatmap(z=heatmap, colorscale='Blues'))
                     fig.update_layout(
                         title="Anomaly Heatmap",
@@ -181,7 +168,6 @@ def main():
                     )
                     st.plotly_chart(fig, use_container_width=True)
 
-                    # Display analysis results
                     st.markdown('<div class="section-header">Analysis Results</div>', unsafe_allow_html=True)
                     for i, anomaly in enumerate(anomalies, 1):
                         condition = analyze_medical_image(anomaly)
