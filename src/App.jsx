@@ -11,11 +11,7 @@ import {
   Upload,
   FileImage,
   Brain,
-  Heart,
-  AlertCircle,
-  CheckCircle2,
   Download,
-  ZoomIn,
   LucideFingerprint,
 } from "lucide-react";
 import {
@@ -30,7 +26,6 @@ function App() {
   const [files, setFiles] = useState([]);
   const [analyzing, setAnalyzing] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [analysisResult, setAnalysisResult] = useState(null);
   const [processedImage, setProcessedImage] = useState(null);
   const [heatmapOverlay, setHeatmapOverlay] = useState(null);
   const [medicalAnalysis, setMedicalAnalysis] = useState(null);
@@ -55,7 +50,6 @@ function App() {
   const handleAnalysis = async (file) => {
     setAnalyzing(true);
     setProgress(0);
-    setAnalysisResult(null);
     setMedicalAnalysis(null);
 
     try {
@@ -88,7 +82,6 @@ function App() {
 
       setTimeout(() => {
         setAnalyzing(false);
-        setAnalysisResult({ anomalies });
         setMedicalAnalysis(medicalFindings);
         toast({
           title: "Analysis Complete",
