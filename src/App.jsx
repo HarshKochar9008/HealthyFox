@@ -59,11 +59,9 @@ function App() {
     setMedicalAnalysis(null);
 
     try {
-      // Process image
       const processedImageData = await processImage(file);
       setProcessedImage(processedImageData.processedImageUrl);
 
-      // Simulate analysis progress
       const interval = setInterval(() => {
         setProgress((prev) => {
           if (prev >= 100) {
@@ -74,13 +72,11 @@ function App() {
         });
       }, 100);
 
-      // Detect anomalies
       const anomalies = detectAnomalies(
         processedImageData.width,
         processedImageData.height
       );
 
-      // Generate heatmap
       const heatmap = generateHeatmap(
         processedImageData.width,
         processedImageData.height,
@@ -88,10 +84,8 @@ function App() {
       );
       setHeatmapOverlay(heatmap);
 
-      // Generate medical analysis
       const medicalFindings = anomalies.map(analyzeMedicalImage);
 
-      // Complete analysis
       setTimeout(() => {
         setAnalyzing(false);
         setAnalysisResult({ anomalies });
@@ -135,7 +129,6 @@ function App() {
     }
   };
 
-  // Scroll to upload section
   const scrollToUpload = () => {
     const el = document.getElementById("upload-section");
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -145,16 +138,16 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
       <header className="header">
         <span className="logo-title">
+          <img src="/assets/logo.png" alt="HealthyFox Logo" style={{ height: 36, width: 36, marginRight: 12 }} />
           HealthyFox
         </span>
       </header>
 
-      {/* Hero Section */}
       <section className="hero">
         <div className="hero-icon">
           <Brain className="w-12 h-12 text-blue-500" />
         </div>
-        <h1 className="hero-title">AI Medical Image Analysis</h1>
+        <h1 className="hero-title">HealthyFox - Your AI Medical Imaging Assistant</h1>
         <p className="hero-desc">
           Upload your medical images for instant, AI-powered analysis and diagnostic assistance. Fast, secure, and privacy-first.
         </p>
@@ -163,7 +156,6 @@ function App() {
         </button>
       </section>
 
-      {/* Stepper */}
       <div className="section">
         <div className="stepper">
           <div className="step">
@@ -181,7 +173,6 @@ function App() {
         </div>
       </div>
 
-      {/* Upload Section */}
       <section className="section" id="upload-section">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="upload-card">
           <div {...getRootProps()} className="upload-area w-full">
@@ -213,19 +204,13 @@ function App() {
         </motion.div>
       </section>
 
-      {/* Capabilities Section */}
       <section className="section">
         <h2 className="text-3xl font-bold text-blue-800 text-center mb-8">What Can MedAI Analyze?</h2>
-        <div className="capabilities-grid">
+        <div className="capabilities-grid grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="capability-feature">
             <Brain className="w-10 h-10 text-purple-500" />
             <h3 className="font-semibold text-lg">MRI Analysis</h3>
             <p className="text-sm text-gray-600 text-center">Detects neurological conditions and abnormalities</p>
-          </div>
-          <div className="capability-feature">
-            <Heart className="w-10 h-10 text-red-500" />
-            <h3 className="font-semibold text-lg">ECG Analysis</h3>
-            <p className="text-sm text-gray-600 text-center">Identifies cardiac rhythm irregularities</p>
           </div>
           <div className="capability-feature">
             <LucideFingerprint className="w-10 h-10 text-blue-500" />
@@ -235,7 +220,6 @@ function App() {
         </div>
       </section>
 
-      {/* Results Section */}
       <AnimatePresence>
         {processedImage && (
           <section className="section">
@@ -261,9 +245,10 @@ function App() {
         )}
       </AnimatePresence>
 
-      {/* Footer */}
       <footer className="footer">
-        &copy; {new Date().getFullYear()} MedAI &mdash; Medical Image Analysis Platform. All rights reserved.
+        &copy; {new Date().getFullYear()} HealthyFox &mdash; Medical Image Analysis Platform. All rights reserved.
+        <br />
+        Made by <a href="https://github.com/harshkochar9008" target="_blank" rel="noopener noreferrer">Harsh Kochar</a>
       </footer>
       <Toaster />
     </div>

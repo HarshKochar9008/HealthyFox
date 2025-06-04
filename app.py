@@ -130,6 +130,7 @@ def analyze_medical_image(anomaly):
     return np.random.choice(conditions)
 
 def main():
+    st.image("public/assets/logo.png", width=120)
     st.markdown('<div style="display:flex;align-items:center;gap:1rem;"><span style="font-size:2.5rem;">🏥</span><span class="section-header" style="margin-bottom:0;">HealthyFox</span></div>', unsafe_allow_html=True)
     st.markdown("<span style='color:#a5b4fc;'>Upload medical images for AI-powered analysis and diagnosis assistance</span>", unsafe_allow_html=True)
 
@@ -190,7 +191,6 @@ def main():
         st.markdown('<div class="upload-section">', unsafe_allow_html=True)
         st.markdown('<div class="section-header">Analysis Capabilities</div>', unsafe_allow_html=True)
         st.markdown('<span class="capability-icon">🧠</span> <b>MRI Analysis</b><br><span style="color:#a5b4fc;">Detects neurological conditions and abnormalities</span>', unsafe_allow_html=True)
-        st.markdown('<span class="capability-icon">❤️</span> <b>ECG Analysis</b><br><span style="color:#a5b4fc;">Identifies cardiac rhythm irregularities</span>', unsafe_allow_html=True)
         st.markdown('<span class="capability-icon">📷</span> <b>X-Ray Analysis</b><br><span style="color:#a5b4fc;">Detects pulmonary conditions and bone fractures</span>', unsafe_allow_html=True)
         st.markdown('<div class="section-header" style="margin-top:2rem;">Safety & Compliance</div>', unsafe_allow_html=True)
         st.markdown('<span class="compliance-badge">HIPAA</span> HIPAA Compliant', unsafe_allow_html=True)

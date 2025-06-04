@@ -79,10 +79,10 @@
     font-size: 1.08rem;
   }
   .header {
-    @apply fixed top-0 left-0 w-full bg-white/80 backdrop-blur z-50 shadow-md flex items-center px-8 h-16;
+    @apply fixed top-0 left-0 w-full bg-black/50 backdrop-blur z-50 shadow-md flex items-center px-8 h-16;
   }
   .logo-title {
-    @apply text-2xl font-extrabold text-blue-700 tracking-tight flex items-center gap-2;
+    @apply text-2xl font-extrabold text-white tracking-tight flex items-center gap-2;
   }
   .hero {
     @apply flex flex-col items-center justify-center text-center py-28 px-4 bg-gradient-to-br from-blue-100 to-blue-200;

@@ -4,15 +4,12 @@ import html2canvas from 'html2canvas';
 export const generateReport = async (analysisData, imageUrl) => {
   const pdf = new jsPDF();
   
-  // Add header
   pdf.setFontSize(20);
   pdf.text('Medical Image Analysis Report', 20, 20);
   
-  // Add date
   pdf.setFontSize(12);
   pdf.text(`Date: ${new Date().toLocaleDateString()}`, 20, 30);
   
-  // Add image
   const img = new Image();
   img.src = imageUrl;
   await new Promise(resolve => {
@@ -23,19 +20,16 @@ export const generateReport = async (analysisData, imageUrl) => {
   let yPos = 150;
 
   analysisData.forEach((finding, index) => {
-    // Add condition header
     pdf.setFontSize(14);
     pdf.setTextColor(0, 0, 0);
     pdf.text(`Finding ${index + 1}: ${finding.type.toUpperCase()}`, 20, yPos);
     yPos += 10;
 
-    // Add severity and confidence
     pdf.setFontSize(12);
     pdf.setTextColor(100, 100, 100);
     pdf.text(`Severity: ${finding.severity} (${finding.confidence.toFixed(1)}% confidence)`, 25, yPos);
     yPos += 10;
 
-    // Add medical explanation
     pdf.setFontSize(12);
     pdf.setTextColor(0, 0, 0);
     pdf.text("Medical Explanation:", 20, yPos);
@@ -45,7 +39,6 @@ export const generateReport = async (analysisData, imageUrl) => {
     pdf.text(explanation, 25, yPos);
     yPos += explanation.length * 7;
 
-    // Add symptoms
     pdf.setFontSize(12);
     pdf.text("Symptoms:", 20, yPos);
     yPos += 7;
@@ -56,7 +49,6 @@ export const generateReport = async (analysisData, imageUrl) => {
     });
     yPos += 5;
 
-    // Add recommended tests
     pdf.setFontSize(12);
     pdf.text("Recommended Tests:", 20, yPos);
     yPos += 7;
@@ -67,7 +59,6 @@ export const generateReport = async (analysisData, imageUrl) => {
     });
     yPos += 5;
 
-    // Add specialists
     pdf.setFontSize(12);
     pdf.text("Specialists to Consult:", 20, yPos);
     yPos += 7;
@@ -78,7 +69,6 @@ export const generateReport = async (analysisData, imageUrl) => {
     });
     yPos += 5;
 
-    // Add treatment options
     pdf.setFontSize(12);
     pdf.text("Treatment Options:", 20, yPos);
     yPos += 7;
@@ -89,7 +79,6 @@ export const generateReport = async (analysisData, imageUrl) => {
     });
     yPos += 5;
 
-    // Add lifestyle recommendations
     pdf.setFontSize(12);
     pdf.text("Lifestyle Recommendations:", 20, yPos);
     yPos += 7;
@@ -100,7 +89,6 @@ export const generateReport = async (analysisData, imageUrl) => {
     });
     yPos += 15;
 
-    // Add new page if needed
     if (yPos > 270) {
       pdf.addPage();
       yPos = 20;
