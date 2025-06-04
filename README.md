@@ -18,7 +18,7 @@ HealthyFox is an AI-powered web app that helps doctors analyze medical images li
 
 **JavaScript Version:**
 - Vite + React
-- Node.js + Express
+- Node.js 
 
 ## ▶️ How to Run
 
@@ -30,7 +30,8 @@ streamlit run app.py
 ### JavaScript 
 ```
 npm create vite@latest
-- cd MainDir
+cd MainDir
+```
 ## Contact me 
 
 https://port-me-green.vercel.app/
