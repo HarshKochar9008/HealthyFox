@@ -27,7 +27,10 @@ HealthyFox is an AI-powered web app that helps doctors analyze medical images li
 pip install -r requirements.txt
 streamlit run app.py
 ```
-
-## website to contact me 
+### JavaScript 
+```
+npm create vite@latest
+- cd MainDir
+## Contact me 
 
 https://port-me-green.vercel.app/
